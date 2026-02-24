@@ -61,16 +61,15 @@ function Chat() {
 
       setMessages((prev) => [...prev, aiMsg]);
 
-    } catch (err) {
-      console.error(err);
+    }catch (err) {
+  const errorMessage =
+    err.response?.data?.error || "Something went wrong.";
 
-      // Show error message in chat
-      setMessages((prev) => [
-        ...prev,
-        { type: "ai", text: "Error getting response." },
-      ]);
-    }
-
+  setMessages((prev) => [
+    ...prev,
+    { type: "ai", text: errorMessage },
+  ]);
+}
     setLoading(false);
   };
 
