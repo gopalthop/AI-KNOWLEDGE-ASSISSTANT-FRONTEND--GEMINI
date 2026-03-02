@@ -1,13 +1,125 @@
 .libraryPage {
   min-height: 100vh;
-  padding: 40px;
-  color: white;
+  padding: 40px 20px;
   background: radial-gradient(circle,#0a1b3d,#000);
+  color: white;
+
+  display: flex;
+  justify-content: center;
 }
 
+.libraryContainer {
+  width: 100%;
+  max-width: 900px;
+}
+
+.title {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+/* ---------------- FILTERS ---------------- */
+
+.filters {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.filters select {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255,255,255,0.1);
+  color: white;
+  font-size: 14px;
+  outline: none;
+}
+
+/* ---------------- CARD ---------------- */
+
 .noteCard {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(10px);
+
   padding: 20px;
-  border-radius: 12px;
-  margin-bottom: 15px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  transition: 0.3s;
+}
+
+.noteCard:hover {
+  transform: translateY(-4px);
+}
+
+/* ---------------- META TAGS ---------------- */
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.meta span {
+  background: rgba(0,150,255,0.25);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+/* ---------------- TEXT ---------------- */
+
+.preview {
+  opacity: 0.85;
+  line-height: 1.6;
+  margin-top: 10px;
+}
+
+/* ---------------- DELETE BUTTON ---------------- */
+
+.deleteBtn {
+  margin-top: 15px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  background: #ff4d4d;
+  color: white;
+  cursor: pointer;
+}
+
+.deleteBtn:hover {
+  background: #ff2222;
+}
+
+/* ---------------- EMPTY ---------------- */
+
+.empty {
+  opacity: 0.7;
+  margin-top: 30px;
+}
+.extractBtn {
+  margin-top: 10px;
+  margin-right: 10px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  background: #0096ff;
+  color: white;
+  cursor: pointer;
+}
+
+.extractBtn:hover {
+  background: #0077cc;
+}
+
+.extractBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.practiceBtn:disabled{
+  opacity:0.5;
+  cursor:not-allowed;
 }

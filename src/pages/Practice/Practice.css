@@ -1,0 +1,89 @@
+.examPage{
+  min-height:100vh;
+  background:#0a1b3d;
+  color:white;
+}
+
+.examHeader{
+  display:flex;
+  justify-content:space-between;
+  padding:15px 30px;
+  background:#08142b;
+}
+
+.timer{
+  font-size:20px;
+  font-weight:bold;
+}
+
+.examBody{
+  display:flex;
+}
+
+.questionPanel{
+  flex:3;
+  padding:30px;
+}
+
+.options{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.option{
+  padding:12px;
+  background:#1b2a52;
+  border:none;
+  color:white;
+  cursor:pointer;
+}
+
+.selected{
+  background:#0096ff;
+}
+
+.actions{
+  margin-top:20px;
+  display:flex;
+  gap:10px;
+}
+
+.palette{
+  flex:1;
+  background:#08142b;
+  padding:20px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;
+}
+
+.qbox{
+  padding:10px;
+  border:none;
+  cursor:pointer;
+}
+
+.notVisited{background:gray;}
+.answered{background:green;}
+.review{background:orange;}
+
+.submitBtn{
+  margin-top:20px;
+  width:100%;
+  padding:12px;
+  background:red;
+  color:white;
+  border:none;
+}
+
+.analysisBox{
+ margin-top:20px;
+ background:rgba(255,255,255,0.08);
+ padding:20px;
+ border-radius:10px;
+ line-height:1.6;
+}

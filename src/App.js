@@ -7,6 +7,10 @@ import Home from "./pages/Home/Home";
 import Upload from "./pages/Upload/Upload";
 import Chat from "./pages/Chat/Chat";
 import Library from "./pages/Library/Library";
+import Practice from "./pages/Practice/Practice";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import AddQuestion from "./pages/AddQuestion/AddQuestion";
+import QuestionManager from "./pages/QuestionManager/QuestionManager";
 
 function App() {
   return (
@@ -19,6 +23,7 @@ function App() {
             <Link to="/" style={navLink}>Home</Link>
             <Link to="/upload" style={navLink}>Upload</Link>
             <Link to="/chat" style={navLink}>Chat</Link>
+            <Link to="/dashboard"style={navLink}>CUET PG</Link>
           </div>
         </div>
       </nav>
@@ -28,6 +33,10 @@ function App() {
         <Route path="/upload" element={<Upload />} />
         <Route path="/chat" element={<Chat />} />
         <Route path="/library" element={<Library />} />
+        <Route path="/practice/:noteId" element={<Practice />} />
+        <Route path="/add-question/:noteId"element={<AddQuestion/>}/>
+        <Route path="/manage/:noteId" element={<QuestionManager/>} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </div>
   );

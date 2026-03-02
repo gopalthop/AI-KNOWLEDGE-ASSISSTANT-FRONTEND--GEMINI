@@ -3,87 +3,156 @@ import axios from "axios";
 import "./Upload.css";
 
 function Upload() {
+
   const [text, setText] = useState("");
+  const [title, setTitle] = useState("");
+  const [exam, setExam] = useState("");
+  const [subject, setSubject] = useState("");
+  const [type, setType] = useState("");
+  const [year, setYear] = useState("");
+
   const [loading, setLoading] = useState(false);
-  const [pdfLoading, setPdfLoading] = useState(false);
+  const [fileLoading, setFileLoading] = useState(false);
 
-  // ✅ Use environment variable for backend URL
-  const API_URL =
-    process.env.REACT_APP_API_URL ;
+  const API_URL = process.env.REACT_APP_API_URL;
 
-  // 1️⃣ TEXT NOTE UPLOAD
+  /* ===========================
+     TEXT UPLOAD
+  =========================== */
   const handleTextUpload = async () => {
-    if (!text.trim()) {
-      alert("Please enter some text");
+
+    if (!text || !exam || !type) {
+      alert("Please fill required fields");
       return;
     }
 
     setLoading(true);
 
     try {
-      await axios.post(`${API_URL}/api/upload`, { text });
+      await axios.post(`${API_URL}/api/upload`, {
+        title,
+        text,
+        exam,
+        subject,
+        type,
+        year
+      });
 
-      alert("Knowledge saved successfully!");
+      alert("Knowledge saved ✅");
+
       setText("");
+      setTitle("");
 
     } catch (err) {
       console.error(err);
-      alert("Error saving knowledge");
+      alert("Upload failed");
     }
 
     setLoading(false);
   };
 
-  // 2️⃣ FILE UPLOAD (PDF + Excel)
+  /* ===========================
+     FILE UPLOAD
+  =========================== */
   const handleFileUpload = async (e) => {
+
     const file = e.target.files[0];
     if (!file) return;
 
-    setPdfLoading(true);
+    if (!exam || !type) {
+      alert("Select Exam & Type first");
+      return;
+    }
+
+    setFileLoading(true);
 
     const formData = new FormData();
+
     formData.append("file", file);
+    formData.append("title", file.name);
+    formData.append("exam", exam);
+    formData.append("subject", subject);
+    formData.append("type", type);
+    formData.append("year", year);
 
     try {
+
       await axios.post(
         `${API_URL}/api/upload-pdf`,
         formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
-          },
+            "Content-Type": "multipart/form-data"
+          }
         }
       );
 
-      alert("File uploaded successfully!");
+      alert("File uploaded successfully ✅");
 
     } catch (err) {
       console.error(err);
       alert("File upload failed");
     }
 
-    setPdfLoading(false);
+    setFileLoading(false);
   };
 
   return (
     <div className="uploadPage">
-      <section className="pageCenter">
-        <h1 className="pageTitle">Upload Knowledge</h1>
 
-        <p className="pageSubtitle">
-          Save notes or upload documents (PDF/Excel) for AI reference
-        </p>
+      <section className="pageCenter">
+
+        <h1 className="pageTitle">Upload Knowledge</h1>
 
         <div className="glassBox">
 
-          {/* TEXT UPLOAD */}
-          <h3>Enter Text Notes</h3>
+          {/* ---------- METADATA ---------- */}
+
+          <h3>Document Details</h3>
+
+          <input
+            placeholder="Title"
+            value={title}
+            onChange={(e)=>setTitle(e.target.value)}
+          />
+
+          <select onChange={(e)=>setExam(e.target.value)}>
+            <option value="">Select Exam *</option>
+            <option value="CUET PG">CUET PG</option>
+          </select>
+
+          <select onChange={(e)=>setSubject(e.target.value)}>
+            <option value="">Select Subject</option>
+            <option value="Custom">
+              Custom
+            </option>
+          </select>
+
+          <select onChange={(e)=>setType(e.target.value)}>
+            <option value="">Content Type *</option>
+            <option value="notes">Notes</option>
+            <option value="pyq">PYQ</option>
+            <option value="mock">Mock Test</option>
+          </select>
+
+          <input
+            type="number"
+            placeholder="Year (optional)"
+            value={year}
+            onChange={(e)=>setYear(e.target.value)}
+          />
+
+          <hr />
+
+          {/* ---------- TEXT ---------- */}
+
+          <h3>Paste Text</h3>
 
           <textarea
             className="textArea"
-            placeholder="Type or paste your notes here..."
+            placeholder="Paste notes or questions..."
             value={text}
-            onChange={(e) => setText(e.target.value)}
+            onChange={(e)=>setText(e.target.value)}
           />
 
           <button
@@ -91,13 +160,14 @@ function Upload() {
             onClick={handleTextUpload}
             disabled={loading}
           >
-            {loading ? "Saving..." : "Save Knowledge"}
+            {loading ? "Saving..." : "Save Text"}
           </button>
 
-          <hr style={{ margin: "30px 0", opacity: 0.2 }} />
+          <hr />
 
-          {/* FILE UPLOAD */}
-          <h3>Upload File (PDF or Excel)</h3>
+          {/* ---------- FILE ---------- */}
+
+          <h3>Upload PDF / Excel</h3>
 
           <input
             type="file"
@@ -105,13 +175,10 @@ function Upload() {
             onChange={handleFileUpload}
           />
 
-          {pdfLoading && <p>Processing file...</p>}
-
-          <p className="helperText">
-            Uploaded content will be stored and used by the AI assistant.
-          </p>
+          {fileLoading && <p>Processing file...</p>}
 
         </div>
+
       </section>
     </div>
   );
