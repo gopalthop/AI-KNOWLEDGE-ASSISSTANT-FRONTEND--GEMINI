@@ -1,9 +1,4 @@
-import React, {
-  useEffect,
-  useState,
-  useCallback
-} from "react";
-
+import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Library.css";
@@ -11,53 +6,52 @@ import "./Library.css";
 function Library() {
 
   const navigate = useNavigate();
-
-  const API_URL =
-    process.env.REACT_APP_API_URL;
+  const API_URL = process.env.REACT_APP_API_URL;
 
   const [notes, setNotes] = useState([]);
   const [exam, setExam] = useState("");
   const [subject, setSubject] = useState("");
-  const [extractingId, setExtractingId] =
-    useState(null);
+  const [extractingId, setExtractingId] = useState(null);
 
   /* ================= FETCH NOTES ================= */
+const fetchNotes = useCallback(async () => {
+  try {
 
-  const fetchNotes = useCallback(async () => {
-    try {
+    const res = await axios.get(
+      `${API_URL}/api/notes`,
+      {
+        params: { exam, subject, page: 1 }
+      }
+    );
 
-      const res = await axios.get(
-        `${API_URL}/api/notes`,
-        {
-          params: { exam, subject }
-        }
-      );
+    setNotes(res.data.notes);
 
-      setNotes(res.data.notes);
+  } catch (err) {
+    console.error(err);
+  }
+}, [API_URL, exam, subject]);
 
-    } catch (err) {
-      console.error(err);
-    }
-  }, [API_URL, exam, subject]);
+ useEffect(() => {
+  fetchNotes();
+}, [fetchNotes]);
 
-  useEffect(() => {
-    fetchNotes();
-  }, [fetchNotes]);
 
   /* ================= DELETE ================= */
 
   const deleteNote = async (id) => {
     try {
+
       await axios.delete(
         `${API_URL}/api/notes/${id}`
       );
 
-      fetchNotes();
+      fetchNotes(); // refresh list
 
     } catch (err) {
       console.error(err);
     }
   };
+
 
   /* ================= EXTRACT ================= */
 
@@ -71,11 +65,9 @@ function Library() {
         `${API_URL}/api/extract/${noteId}`
       );
 
-      alert(
-        `✅ ${res.data.total} questions extracted`
-      );
+      alert(`✅ ${res.data.total} questions extracted`);
 
-      fetchNotes();
+      fetchNotes(); // refresh after extraction
 
     } catch (err) {
 
@@ -86,6 +78,7 @@ function Library() {
       setExtractingId(null);
     }
   };
+
 
   /* ================= UI ================= */
 
@@ -103,27 +96,17 @@ function Library() {
 
           <select
             value={exam}
-            onChange={(e)=>
-              setExam(e.target.value)
-            }
+            onChange={(e) => setExam(e.target.value)}
           >
-            <option value="">
-              All Exams
-            </option>
-            <option value="CUET PG">
-              CUET PG
-            </option>
+            <option value="">All Exams</option>
+            <option value="CUET PG">CUET PG</option>
           </select>
 
           <select
             value={subject}
-            onChange={(e)=>
-              setSubject(e.target.value)
-            }
+            onChange={(e) => setSubject(e.target.value)}
           >
-            <option value="">
-              All Subjects
-            </option>
+            <option value="">All Subjects</option>
             <option value="Computer Science">
               Computer Science
             </option>
@@ -155,11 +138,10 @@ function Library() {
               {note.subject && <span>{note.subject}</span>}
               {note.type && <span>{note.type}</span>}
               {note.year && <span>{note.year}</span>}
+              {note.questionCount > 0 && (
+                <span>{note.questionCount} Questions</span>
+              )}
             </div>
-
-            <p className="preview">
-              {note.text?.slice(0,200)}...
-            </p>
 
             {/* ===== PYQ ACTIONS ===== */}
             {note.type === "pyq" && (
@@ -187,9 +169,7 @@ function Library() {
                 {/* ADD MANUAL */}
                 <button
                   onClick={() =>
-                    navigate(
-                      `/add-question/${note._id}`
-                    )
+                    navigate(`/add-question/${note._id}`)
                   }
                 >
                   Add Question
@@ -198,9 +178,7 @@ function Library() {
                 {/* MANAGE */}
                 <button
                   onClick={() =>
-                    navigate(
-                      `/manage/${note._id}`
-                    )
+                    navigate(`/manage/${note._id}`)
                   }
                 >
                   Manage Questions
@@ -211,9 +189,7 @@ function Library() {
                   className="practiceBtn"
                   disabled={!note.extracted}
                   onClick={() =>
-                    navigate(
-                      `/practice/${note._id}`
-                    )
+                    navigate(`/practice/${note._id}`)
                   }
                 >
                   {note.extracted
