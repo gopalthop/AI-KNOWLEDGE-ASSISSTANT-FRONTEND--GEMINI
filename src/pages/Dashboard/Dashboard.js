@@ -28,7 +28,7 @@ function Dashboard() {
       setPapers(pyqs);
     });
 
-  },[]);
+  },[API_URL]);
 
   return(
     <div className="dashboardPage">
