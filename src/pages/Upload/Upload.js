@@ -54,48 +54,91 @@ function Upload() {
   /* ===========================
      FILE UPLOAD
   =========================== */
-  const handleFileUpload = async (e) => {
+ const handlePdfUpload = async (e) => {
 
-    const file = e.target.files[0];
-    if (!file) return;
+  const file = e.target.files[0];
+  if (!file) return;
 
-    if (!exam || !type) {
-      alert("Select Exam & Type first");
-      return;
-    }
+  if (!exam || !type) {
+    alert("Select Exam & Type first");
+    return;
+  }
 
-    setFileLoading(true);
+  setFileLoading(true);
 
-    const formData = new FormData();
+  const formData = new FormData();
 
-    formData.append("file", file);
-    formData.append("title", file.name);
-    formData.append("exam", exam);
-    formData.append("subject", subject);
-    formData.append("type", type);
-    formData.append("year", year);
+  formData.append("file", file);
+  formData.append("title", file.name);
+  formData.append("exam", exam);
+  formData.append("subject", subject);
+  formData.append("type", type);
+  formData.append("year", year);
 
-    try {
+  try {
 
-      await axios.post(
-        `${API_URL}/api/upload-pdf`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data"
-          }
+    await axios.post(
+      `${API_URL}/api/upload-pdf`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data"
         }
-      );
+      }
+    );
 
-      alert("File uploaded successfully ✅");
+    alert("PDF uploaded successfully ✅");
 
-    } catch (err) {
-      console.error(err);
-      alert("File upload failed");
-    }
+  } catch (err) {
+    console.error(err);
+    alert("PDF upload failed");
+  }
 
-    setFileLoading(false);
-  };
+  setFileLoading(false);
+};
+
+/* */
+const handleExcelUpload = async (e) => {
+
+  const file = e.target.files[0];
+  if (!file) return;
+
+  if (!exam) {
+    alert("Select Exam first");
+    return;
+  }
+
+  setFileLoading(true);
+
+  const formData = new FormData();
+
+  formData.append("file", file);
+  formData.append("title", file.name);
+  formData.append("exam", exam);
+  formData.append("subject", subject);
+  formData.append("year", year);
+
+  try {
+
+    await axios.post(
+      `${API_URL}/api/upload-excel`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      }
+    );
+
+    alert("Excel imported successfully ✅");
+
+  } catch (err) {
+    console.error(err);
+    alert("Excel import failed");
+  }
+
+  setFileLoading(false);
+};
 
   return (
     <div className="uploadPage">
@@ -166,14 +209,31 @@ function Upload() {
           <hr />
 
           {/* ---------- FILE ---------- */}
+          <hr />
 
-          <h3>Upload PDF / Excel</h3>
+{/* ---------- PDF ---------- */}
 
-          <input
-            type="file"
-            accept=".pdf,.xlsx,.xls"
-            onChange={handleFileUpload}
-          />
+<h3>Upload PDF (AI Extraction)</h3>
+
+<input
+  type="file"
+  accept=".pdf"
+  onChange={handlePdfUpload}
+/>
+
+<hr />
+
+{/* ---------- EXCEL ---------- */}
+
+<h3>Upload Structured Question Bank (Excel)</h3>
+
+<input
+  type="file"
+  accept=".xlsx,.xls"
+  onChange={handleExcelUpload}
+/>
+
+         
 
           {fileLoading && <p>Processing file...</p>}
 
