@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from "react";
+import React,{useEffect,useState, useCallback} from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./QuestionManager.css";
@@ -13,16 +13,18 @@ const {noteId}=useParams();
 const [questions,setQuestions]=useState([]);
 const [editing,setEditing]=useState(null);
 
+const fetchQuestions = useCallback(async () => {
+  const res = await axios.get(
+    `${API_URL}/api/questions/${noteId}`
+  );
+  setQuestions(res.data.questions);
+}, [API_URL, noteId]);
+
 useEffect(()=>{
 fetchQuestions();
-},[]);
+},[fetchQuestions]);
 
-const fetchQuestions=async()=>{
-const res=await axios.get(
-`${API_URL}/api/questions/${noteId}`
-);
-setQuestions(res.data.questions);
-};
+
 
 /* ===== DELETE ===== */
 

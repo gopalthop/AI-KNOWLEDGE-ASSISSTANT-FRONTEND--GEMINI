@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./Practice.css";
@@ -29,7 +29,38 @@ function Practice() {
         setQuestions(res.data.questions);
       });
 
-  },[noteId]);
+  },[noteId, API_URL]);
+
+   /* ================= SUBMIT ================= */
+
+  const submitTest = useCallback(async () => {
+
+  if(submitted) return;
+
+  let correct = 0;
+
+  questions.forEach((q, i) => {
+    if (answers[i] === q.correctAnswer)
+      correct++;
+  });
+
+  setScore(correct);
+  setSubmitted(true);
+
+  try {
+    const res = await axios.post(
+      `${API_URL}/api/analyze-result`,
+      { answers, noteId }
+    );
+
+    setAnalysis(res.data.analysis);
+
+  } catch (err) {
+    console.error("Analysis failed");
+    setAnalysis("Analysis currently unavailable.");
+  }
+
+}, [answers, questions, noteId, API_URL, submitted]);
 
   /* ================= TIMER ================= */
 
@@ -54,7 +85,7 @@ function Practice() {
 
     return()=>clearInterval(timer);
 
-  },[submitted]);
+  },[submitted, submitTest]);
 
   const formatTime=(t)=>{
     const m=Math.floor(t/60);
@@ -84,41 +115,7 @@ function Practice() {
     saveNext();
   };
 
-  /* ================= SUBMIT ================= */
-
-  const submitTest = async ()=>{
-
-    if(submitted) return; // prevent double submit
-
-    let correct=0;
-
-    questions.forEach((q,i)=>{
-      if(answers[i]===q.correctAnswer)
-        correct++;
-    });
-
-    setScore(correct);
-    setSubmitted(true);
-
-    try{
-
-      const res = await axios.post(
-        `${API_URL}/api/analyze-result`,
-        {
-          answers,
-          noteId
-        }
-      );
-
-      setAnalysis(res.data.analysis);
-
-    }catch(err){
-      console.error("Analysis failed");
-      setAnalysis(
-        "Analysis currently unavailable."
-      );
-    }
-  };
+ 
 
   /* ================= LOADING ================= */
 
