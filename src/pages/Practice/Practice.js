@@ -17,7 +17,7 @@ function Practice() {
   const [timeLeft,setTimeLeft]=useState(1800);
   const [submitted,setSubmitted]=useState(false);
   const [score,setScore]=useState(0);
-  const [analysis,setAnalysis]=useState("");
+
 
   /* ================= FETCH QUESTIONS ================= */
 
@@ -33,34 +33,22 @@ function Practice() {
 
    /* ================= SUBMIT ================= */
 
-  const submitTest = useCallback(async () => {
+  const submitTest = useCallback(() => {
 
-  if(submitted) return;
+  if (submitted) return;
 
   let correct = 0;
 
   questions.forEach((q, i) => {
-    if (answers[i] === q.correctAnswer)
+    if (answers[i] === q.correctAnswer) {
       correct++;
+    }
   });
 
   setScore(correct);
   setSubmitted(true);
 
-  try {
-    const res = await axios.post(
-      `${API_URL}/api/analyze-result`,
-      { answers, noteId }
-    );
-
-    setAnalysis(res.data.analysis);
-
-  } catch (err) {
-    console.error("Analysis failed");
-    setAnalysis("Analysis currently unavailable.");
-  }
-
-}, [answers, questions, noteId, API_URL, submitted]);
+}, [answers, questions, submitted]);
 
   /* ================= TIMER ================= */
 
@@ -124,28 +112,59 @@ function Practice() {
 
   /* ================= RESULT SCREEN ================= */
 
-  if(submitted)
-    return(
-      <div className="examPage">
-        <div className="resultBox">
+  if (submitted)
+  return (
+    <div className="examPage">
+      <div className="resultBox">
 
-          <h2>Test Submitted ✅</h2>
+        <h2>Test Submitted ✅</h2>
 
-          <h3>
-            Score: {score}/{questions.length}
-          </h3>
+        <h3>
+          Score: {score}/{questions.length}
+        </h3>
 
-          <div className="analysisBox">
-            <h3>AI Performance Analysis</h3>
-            <p>
-              {analysis || "Analyzing performance..."}
-            </p>
-          </div>
+        <div className="resultReview">
+
+          {questions.map((q, i) => {
+
+            const userAnswer = answers[i];
+            const isCorrect = userAnswer === q.correctAnswer;
+
+            return (
+              <div
+                key={i}
+                className={`reviewCard ${isCorrect ? "correct" : "wrong"}`}
+              >
+
+                <h4>Question {i + 1}</h4>
+
+                <p>{q.question}</p>
+
+                <p>
+                  <strong>Your Answer:</strong> {userAnswer || "Not Attempted"}
+                </p>
+
+                {!isCorrect && (
+                  <p>
+                    <strong>Correct Answer:</strong> {q.correctAnswer}
+                  </p>
+                )}
+
+                {q.explanation && (
+                  <p className="explanation">
+                    <strong>Explanation:</strong> {q.explanation}
+                  </p>
+                )}
+
+              </div>
+            );
+          })}
 
         </div>
-      </div>
-    );
 
+      </div>
+    </div>
+  );
   const q=questions[current];
 
   /* ================= EXAM UI ================= */
