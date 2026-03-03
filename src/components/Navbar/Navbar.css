@@ -1,0 +1,64 @@
+.navbar {
+  background: #0c0c0c;
+  color: white;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #00d4ff;
+  white-space: nowrap;
+}
+
+.navLinks {
+  display: flex;
+  gap: 20px;
+}
+
+.navLinks a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 22px;
+  height: 2px;
+  background: white;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .navLinks {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: #111;
+    flex-direction: column;
+    width: 220px;
+    padding: 20px;
+    display: none;
+  }
+
+  .navLinks.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}

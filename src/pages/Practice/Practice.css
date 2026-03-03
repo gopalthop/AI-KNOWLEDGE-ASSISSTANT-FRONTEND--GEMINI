@@ -1,89 +1,170 @@
-.examPage{
-  min-height:100vh;
-  background:#0a1b3d;
-  color:white;
+/* ================= PAGE ================= */
+
+.examPage {
+  min-height: 100vh;
+  background: #0a1b3d;
+  color: white;
+  padding: clamp(15px, 3vw, 25px);
 }
 
-.examHeader{
-  display:flex;
-  justify-content:space-between;
-  padding:15px 30px;
-  background:#08142b;
+/* ================= HEADER ================= */
+
+.examHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: clamp(10px, 2vw, 20px);
+  background: #08142b;
+  border-radius: 8px;
+  margin-bottom: clamp(15px, 3vw, 25px);
 }
 
-.timer{
-  font-size:20px;
-  font-weight:bold;
+.examHeader h2 {
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
 }
 
-.examBody{
-  display:flex;
+.timer {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-weight: bold;
 }
 
-.questionPanel{
-  flex:3;
-  padding:30px;
+/* ================= BODY LAYOUT ================= */
+
+.examBody {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: clamp(15px, 3vw, 25px);
 }
 
-.options{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
+/* ================= QUESTION PANEL ================= */
+
+.questionPanel {
+  padding: clamp(15px, 3vw, 30px);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
 }
 
-.option{
-  padding:12px;
-  background:#1b2a52;
-  border:none;
-  color:white;
-  cursor:pointer;
+.questionPanel h3 {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  margin-bottom: 10px;
 }
 
-.selected{
-  background:#0096ff;
+.questionPanel p {
+  font-size: clamp(0.9rem, 1.8vw, 1rem);
+  line-height: 1.6;
 }
 
-.actions{
-  margin-top:20px;
-  display:flex;
-  gap:10px;
+/* ================= OPTIONS ================= */
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 2vw, 12px);
+  margin-top: 15px;
 }
 
-.palette{
-  flex:1;
-  background:#08142b;
-  padding:20px;
+.option {
+  padding: clamp(10px, 2vw, 14px);
+  background: #1b2a52;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: clamp(0.85rem, 1.6vw, 0.95rem);
+  transition: 0.2s;
 }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:10px;
+.option:hover {
+  background: #22346b;
 }
 
-.qbox{
-  padding:10px;
-  border:none;
-  cursor:pointer;
+.selected {
+  background: #0096ff;
 }
 
-.notVisited{background:gray;}
-.answered{background:green;}
-.review{background:orange;}
+/* ================= ACTION BUTTONS ================= */
 
-.submitBtn{
-  margin-top:20px;
-  width:100%;
-  padding:12px;
-  background:red;
-  color:white;
-  border:none;
+.actions {
+  margin-top: clamp(15px, 3vw, 20px);
+  display: flex;
+  gap: clamp(8px, 2vw, 12px);
+  flex-wrap: wrap;
 }
 
-.analysisBox{
- margin-top:20px;
- background:rgba(255,255,255,0.08);
- padding:20px;
- border-radius:10px;
- line-height:1.6;
+.actions button {
+  flex: 1;
+  padding: clamp(8px, 1.5vw, 12px);
+  border: none;
+  border-radius: 6px;
+  font-size: clamp(0.85rem, 1.6vw, 0.95rem);
+  cursor: pointer;
+}
+
+/* ================= PALETTE ================= */
+
+.palette {
+  background: #08142b;
+  padding: clamp(15px, 3vw, 20px);
+  border-radius: 12px;
+}
+
+.palette h4 {
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  margin-bottom: 15px;
+}
+
+/* Grid auto adjusts */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(35px, 1fr));
+  gap: 8px;
+}
+
+.qbox {
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.8rem;
+  border-radius: 4px;
+}
+
+.notVisited { background: gray; }
+.answered { background: green; }
+.review { background: orange; }
+
+/* ================= SUBMIT BUTTON ================= */
+
+.submitBtn {
+  margin-top: 20px;
+  width: 100%;
+  padding: clamp(10px, 2vw, 14px);
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: clamp(0.9rem, 1.8vw, 1rem);
+  cursor: pointer;
+}
+
+/* ================= ANALYSIS ================= */
+
+.analysisBox {
+  margin-top: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: clamp(15px, 3vw, 20px);
+  border-radius: 10px;
+  line-height: 1.6;
+  font-size: clamp(0.85rem, 1.6vw, 0.95rem);
+}
+
+/* ================= MOBILE LAYOUT ================= */
+
+@media (max-width: 900px) {
+  .examBody {
+    grid-template-columns: 1fr;
+  }
+
+  .palette {
+    order: -1;
+  }
 }

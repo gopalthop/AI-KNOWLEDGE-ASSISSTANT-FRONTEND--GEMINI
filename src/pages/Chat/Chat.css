@@ -1,51 +1,59 @@
+/* ================= PAGE ================= */
+
 .chatPage {
   min-height: 100vh;
-  background-color: #0f172a; /* Clean flat dark */
+  background-color: #0f172a;
   color: #ffffff;
-  padding: 40px 16px;
+  padding: clamp(20px, 4vw, 40px) clamp(15px, 3vw, 16px);
 }
 
-/* CENTER */
+/* ================= CENTER ================= */
+
 .pageCenter {
   max-width: 900px;
   margin: 0 auto;
-  padding-top: 60px;
+  padding-top: clamp(40px, 6vw, 60px);
   text-align: center;
 }
 
+/* ================= TITLES ================= */
+
 .pageTitle {
-  font-size: 2.2rem;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
   font-weight: 600;
   margin-bottom: 10px;
-  color: #ffffff; /* Solid white for better contrast */
+  color: #ffffff;
 }
 
 .pageSubtitle {
   color: #cbd5e1;
-  margin-bottom: 30px;
+  margin-bottom: clamp(20px, 4vw, 30px);
+  font-size: clamp(0.9rem, 2vw, 1rem);
 }
 
-/* CHAT BOX */
+/* ================= CHAT BOX ================= */
+
 .chatBox {
-  height: 350px;
+  min-height: clamp(260px, 45vh, 350px);
+  max-height: 60vh;
   overflow-y: auto;
   margin-bottom: 20px;
-  padding: 16px;
+  padding: clamp(12px, 2vw, 16px);
   border-radius: 12px;
   background-color: #1e293b;
-   min-height: 250px;
-  max-height: 60vh;
 }
 
-/* Messages */
+/* ================= MESSAGES ================= */
+
 .userMsg,
 .aiMsg {
-  max-width: 75%;
-  padding: 12px 16px;
+  max-width: 85%;
+  padding: clamp(10px, 2vw, 14px) clamp(12px, 2vw, 16px);
   border-radius: 12px;
   margin-bottom: 12px;
-  font-size: 14px;
+  font-size: clamp(0.85rem, 1.6vw, 0.95rem);
   line-height: 1.5;
+  word-wrap: break-word;
 }
 
 .userMsg {
@@ -58,23 +66,29 @@
   background-color: #334155;
   color: #ffffff;
   margin-right: auto;
+  white-space: pre-wrap;
+  font-family: system-ui, monospace;
 }
 
-/* INPUT */
+/* ================= INPUT ================= */
+
 .chatInput {
   display: flex;
-  gap: 10px;
+  gap: clamp(8px, 2vw, 10px);
   margin-top: 10px;
+  flex-wrap: wrap;
 }
 
 .chatInput input {
   flex: 1;
-  padding: 12px;
+  min-width: 200px;
+  padding: clamp(10px, 2vw, 12px);
   border-radius: 10px;
   border: 1px solid #334155;
   background-color: #1e293b;
   color: #ffffff;
   outline: none;
+  font-size: clamp(0.85rem, 1.6vw, 0.95rem);
 }
 
 .chatInput input:focus {
@@ -82,10 +96,11 @@
 }
 
 .primaryBtn {
-  padding: 12px 24px;
+  padding: clamp(10px, 2vw, 12px) clamp(18px, 3vw, 24px);
   border-radius: 10px;
   border: none;
   font-weight: 600;
+  font-size: clamp(0.85rem, 1.6vw, 0.95rem);
   background-color: #2563eb;
   color: #ffffff;
   cursor: pointer;
@@ -94,29 +109,9 @@
 
 .primaryBtn:hover {
   background-color: #1d4ed8;
-  transition: 0.2s ease;
 }
 
-/* MOBILE OPTIMIZATION */
-@media (max-width: 600px) {
-  .pageTitle {
-    font-size: 1.8rem;
-  }
-
-  .chatBox {
-    min-height: 400px;
-    max-height: 60vh;
-  }
-
-  .userMsg,
-  .aiMsg {
-    font-size: 13px;
-  }
-}
-.aiMsg {
-  white-space: pre-wrap;
-  font-family: monospace;
-}
+/* ================= TABLE (MARKDOWN) ================= */
 
 .aiMsg table {
   width: 100%;
@@ -124,6 +119,7 @@
   margin-top: 8px;
   border-radius: 8px;
   overflow: hidden;
+  font-size: clamp(0.75rem, 1.5vw, 0.85rem);
 }
 
 .aiMsg th,
@@ -137,4 +133,22 @@
 
 .aiMsg th {
   background-color: #1e293b;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+
+  .chatInput {
+    flex-direction: column;
+  }
+
+  .primaryBtn {
+    width: 100%;
+  }
+
+  .userMsg,
+  .aiMsg {
+    max-width: 100%;
+  }
 }

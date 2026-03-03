@@ -1,7 +1,9 @@
+/* ================= PAGE ================= */
+
 .libraryPage {
   min-height: 100vh;
-  padding: 40px 20px;
-  background: radial-gradient(circle,#0a1b3d,#000);
+  padding: clamp(20px, 4vw, 40px) clamp(15px, 3vw, 20px);
+  background: radial-gradient(circle, #0a1b3d, #000);
   color: white;
 
   display: flex;
@@ -13,40 +15,45 @@
   max-width: 900px;
 }
 
+/* ================= TITLE ================= */
+
 .title {
-  font-size: 32px;
-  margin-bottom: 20px;
+  font-size: clamp(1.8rem, 3vw, 2.2rem);
+  margin-bottom: clamp(15px, 2vw, 20px);
 }
 
-/* ---------------- FILTERS ---------------- */
+/* ================= FILTERS ================= */
 
 .filters {
   display: flex;
-  gap: 15px;
-  margin-bottom: 30px;
+  gap: clamp(10px, 2vw, 15px);
+  margin-bottom: clamp(20px, 3vw, 30px);
+  flex-wrap: wrap;
 }
 
 .filters select {
-  padding: 10px 14px;
+  padding: clamp(8px, 1vw, 12px) clamp(10px, 1.5vw, 14px);
   border-radius: 8px;
   border: none;
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   color: white;
-  font-size: 14px;
+  font-size: 0.9rem;
   outline: none;
+  flex: 1;
+  min-width: 140px;
 }
 
-/* ---------------- CARD ---------------- */
+/* ================= CARD ================= */
 
 .noteCard {
-  background: rgba(255,255,255,0.06);
+  background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(10px);
 
-  padding: 20px;
+  padding: clamp(15px, 2vw, 20px);
   border-radius: 14px;
-  margin-bottom: 20px;
+  margin-bottom: clamp(15px, 2vw, 20px);
 
-  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
   transition: 0.3s;
 }
 
@@ -54,7 +61,7 @@
   transform: translateY(-4px);
 }
 
-/* ---------------- META TAGS ---------------- */
+/* ================= META TAGS ================= */
 
 .meta {
   display: flex;
@@ -64,51 +71,38 @@
 }
 
 .meta span {
-  background: rgba(0,150,255,0.25);
+  background: rgba(0, 150, 255, 0.25);
   padding: 4px 10px;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 
-/* ---------------- TEXT ---------------- */
+/* ================= TEXT ================= */
 
 .preview {
   opacity: 0.85;
   line-height: 1.6;
   margin-top: 10px;
+  font-size: 0.95rem;
 }
 
-/* ---------------- DELETE BUTTON ---------------- */
+/* ================= BUTTONS ================= */
 
-.deleteBtn {
-  margin-top: 15px;
-  padding: 8px 14px;
-  border-radius: 6px;
-  border: none;
-  background: #ff4d4d;
-  color: white;
-  cursor: pointer;
-}
-
-.deleteBtn:hover {
-  background: #ff2222;
-}
-
-/* ---------------- EMPTY ---------------- */
-
-.empty {
-  opacity: 0.7;
-  margin-top: 30px;
-}
-.extractBtn {
+.noteCard button {
   margin-top: 10px;
   margin-right: 10px;
-  padding: 8px 14px;
+  padding: clamp(6px, 1vw, 10px) clamp(10px, 1.5vw, 14px);
   border-radius: 6px;
   border: none;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* Extract Button */
+.extractBtn {
   background: #0096ff;
   color: white;
-  cursor: pointer;
 }
 
 .extractBtn:hover {
@@ -119,7 +113,43 @@
   opacity: 0.6;
   cursor: not-allowed;
 }
-.practiceBtn:disabled{
-  opacity:0.5;
-  cursor:not-allowed;
+
+/* Practice Button */
+.practiceBtn {
+  background: #00c853;
+  color: white;
+}
+
+.practiceBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Delete Button */
+.deleteBtn {
+  background: #ff4d4d;
+  color: white;
+}
+
+.deleteBtn:hover {
+  background: #ff2222;
+}
+
+/* ================= EMPTY ================= */
+
+.empty {
+  opacity: 0.7;
+  margin-top: 30px;
+  font-size: 0.9rem;
+}
+
+/* ================= MOBILE STACK FIX ================= */
+
+@media (max-width: 600px) {
+
+  .noteCard button {
+    width: 100%;
+    margin-right: 0;
+  }
+
 }
