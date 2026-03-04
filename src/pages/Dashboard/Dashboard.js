@@ -22,7 +22,7 @@ function Dashboard() {
     .then(res=>{
       const pyqs =
         res.data.notes.filter(
-          n=>n.type==="pyq" && n.extracted
+          n=>(n.type === "pyq" || n.type === "excel")  && n.extracted
         );
 
       setPapers(pyqs);

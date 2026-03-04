@@ -144,7 +144,7 @@ const fetchNotes = useCallback(async () => {
             </div>
 
             {/* ===== PYQ ACTIONS ===== */}
-            {note.type === "pyq" && (
+            {note.type === "pyq"  && (
 
               <div className="actionGroup">
 
