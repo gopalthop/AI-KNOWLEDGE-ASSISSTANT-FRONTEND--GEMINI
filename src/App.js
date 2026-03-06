@@ -9,6 +9,7 @@ import Practice from "./pages/Practice/Practice";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import AddQuestion from "./pages/AddQuestion/AddQuestion";
 import QuestionManager from "./pages/QuestionManager/QuestionManager";
+import PYQ from "./pages/PYQ/PYQ";
 
 import Navbar from "./components/Navbar/Navbar";
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="/add-question/:noteId" element={<AddQuestion />} />
         <Route path="/manage/:noteId" element={<QuestionManager />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/pyq" element={<PYQ />} />
       </Routes>
     </>
   );
