@@ -11,6 +11,7 @@ const navigate = useNavigate();
 const [papers,setPapers] = useState([]);
 const [search,setSearch] = useState("");
 const [loading,setLoading] = useState(true);
+const [openSubject, setOpenSubject] = useState(null);
 
 useEffect(()=>{
 
@@ -24,6 +25,8 @@ useEffect(()=>{
    );
 
    setPapers(filtered);
+
+
    setLoading(false);
 
  })
@@ -37,6 +40,19 @@ useEffect(()=>{
 const filteredPapers = papers.filter(p =>
  p.title.toLowerCase().includes(search.toLowerCase())
 );
+const groupedPapers = filteredPapers.reduce((acc, paper) => {
+
+  const subject = paper.subject || "Other";
+
+  if (!acc[subject]) {
+    acc[subject] = [];
+  }
+
+  acc[subject].push(paper);
+
+  return acc;
+
+}, {});
 
 if(loading){
   return(
@@ -63,14 +79,37 @@ return(
 
 <div className="papers">
 
-{filteredPapers.map(paper=>(
+{Object.entries(groupedPapers).map(([subject,papers])=>(
+
+<div key={subject} className="subjectBlock">
+
+<button
+ className={`subjectBtn ${
+   openSubject === subject ? "active" : ""
+ }`}
+ onClick={() =>
+   setOpenSubject(
+     openSubject === subject ? null : subject
+   )
+ }
+>
+{subject}
+</button>
+
+{openSubject === subject && (
+<div className="papers">
+  
+
+{papers
+.sort((a,b)=>b.year-a.year)
+.map(paper=>(
 
 <div key={paper._id} className="paperCard">
 
 <h3>{paper.title}</h3>
 
 <p>
-{paper.subject} • {paper.year} • {paper.questionCount} Questions
+{paper.year} • {paper.questionCount} Questions
 </p>
 
 <button
@@ -84,6 +123,13 @@ Start Practice
 ))}
 
 </div>
+)}
+
+</div>
+
+))}
+</div>
+
 
 </div>
 

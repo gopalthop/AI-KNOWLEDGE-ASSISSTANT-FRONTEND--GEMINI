@@ -59,6 +59,11 @@ function Upload() {
   const file = e.target.files[0];
   if (!file) return;
 
+   if (file.type !== "application/pdf") {
+    alert("Please upload a valid PDF file");
+    return;
+  }
+
   if (!exam || !type) {
     alert("Select Exam & Type first");
     return;
@@ -71,7 +76,7 @@ function Upload() {
   formData.append("file", file);
   formData.append("title", file.name);
   formData.append("exam", exam);
-  formData.append("subject", subject);
+  formData.append("subject", subject.trim().toLowerCase());
   formData.append("type", type);
   formData.append("year", year);
 
@@ -102,6 +107,12 @@ const handleExcelUpload = async (e) => {
 
   const file = e.target.files[0];
   if (!file) return;
+
+  if (!file.name.endsWith(".xlsx") && !file.name.endsWith(".xls")) {
+    alert("Please upload a valid Excel file (.xlsx or .xls)");
+    return;
+  }
+
 
   if (!exam) {
     alert("Select Exam first");
@@ -164,12 +175,12 @@ const handleExcelUpload = async (e) => {
             <option value="CUET PG">CUET PG</option>
           </select>
 
-          <select onChange={(e)=>setSubject(e.target.value)}>
-            <option value="">Select Subject</option>
-            <option value="Custom">
-              Custom
-            </option>
-          </select>
+         <input
+  type="text"
+  placeholder="Enter Subject (e.g. Computer Science)"
+  value={subject}
+  onChange={(e)=>setSubject(e.target.value)}
+/>
 
           <select onChange={(e)=>setType(e.target.value)}>
             <option value="">Content Type *</option>
@@ -180,7 +191,7 @@ const handleExcelUpload = async (e) => {
 
           <input
             type="number"
-            placeholder="Year (optional)"
+            placeholder="year *"
             value={year}
             onChange={(e)=>setYear(e.target.value)}
           />

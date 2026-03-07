@@ -14,7 +14,7 @@ function Practice() {
   const [answers,setAnswers]=useState({});
   const [review,setReview]=useState({});
 
-  const [timeLeft,setTimeLeft]=useState(1800);
+  const [timeLeft,setTimeLeft]=useState(5400);
   const [submitted,setSubmitted]=useState(false);
   const [score,setScore]=useState(0);
 
@@ -33,7 +33,7 @@ function Practice() {
 
    /* ================= SUBMIT ================= */
 
-  const submitTest = useCallback(() => {
+  const submitTest = useCallback(async () => {
 
   if (submitted) return;
 
@@ -48,7 +48,16 @@ function Practice() {
   setScore(correct);
   setSubmitted(true);
 
-}, [answers, questions, submitted]);
+  try {
+    await axios.post(`${API_URL}/api/analyze-result`, {
+      answers,
+      noteId
+    });
+  } catch (err) {
+    console.error("Stats update failed", err);
+  }
+
+}, [answers, questions, submitted, API_URL, noteId]);
 
   /* ================= TIMER ================= */
 

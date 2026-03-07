@@ -12,6 +12,31 @@ function Library() {
   const [exam, setExam] = useState("");
   const [subject, setSubject] = useState("");
   const [extractingId, setExtractingId] = useState(null);
+  const [subjects, setSubjects] = useState([]);
+
+
+
+  const fetchSubjects = useCallback(async () => {
+  try {
+
+    const res = await axios.get(`${API_URL}/api/notes`, {
+      params: { exam }
+    });
+
+    const uniqueSubjects = [
+      ...new Set(
+        res.data.notes
+          .map(n => n.subject)
+          .filter(Boolean)
+      )
+    ];
+
+    setSubjects(uniqueSubjects);
+
+  } catch (err) {
+    console.error("Failed to load subjects", err);
+  }
+}, [API_URL, exam]);
 
   /* ================= FETCH NOTES ================= */
 const fetchNotes = useCallback(async () => {
@@ -33,7 +58,8 @@ const fetchNotes = useCallback(async () => {
 
  useEffect(() => {
   fetchNotes();
-}, [fetchNotes]);
+  fetchSubjects();
+}, [fetchNotes, fetchSubjects]);
 
 
   /* ================= DELETE ================= */
@@ -103,14 +129,18 @@ const fetchNotes = useCallback(async () => {
           </select>
 
           <select
-            value={subject}
-            onChange={(e) => setSubject(e.target.value)}
-          >
-            <option value="">All Subjects</option>
-            <option value="Computer Science">
-              Computer Science
-            </option>
-          </select>
+  value={subject}
+  onChange={(e) => setSubject(e.target.value)}
+>
+  <option value="">All Subjects</option>
+
+  {subjects.map((sub) => (
+    <option key={sub} value={sub}>
+      {sub.replace(/\b\w/g, l => l.toUpperCase())}
+    </option>
+  ))}
+
+</select>
 
         </div>
 
@@ -135,7 +165,7 @@ const fetchNotes = useCallback(async () => {
 
             <div className="meta">
               {note.exam && <span>{note.exam}</span>}
-              {note.subject && <span>{note.subject}</span>}
+             {note.subject && (<span> {note.subject.replace(/\b\w/g, l => l.toUpperCase())} </span>)}
               {note.type && <span>{note.type}</span>}
               {note.year && <span>{note.year}</span>}
               {note.questionCount > 0 && (
