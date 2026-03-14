@@ -64,6 +64,12 @@ function Upload() {
     return;
   }
 
+  /* NEW SIZE CHECK */
+if (file.size > 1 * 1024 * 1024) {
+  alert("PDF must be smaller than 1MB");
+  return;
+}
+
   if (!exam || !type) {
     alert("Select Exam & Type first");
     return;
@@ -225,6 +231,9 @@ const handleExcelUpload = async (e) => {
 {/* ---------- PDF ---------- */}
 
 <h3>Upload PDF (AI Extraction)</h3>
+<p style={{fontSize:"12px", opacity:0.7}}>
+Max file size: 1MB
+</p>
 
 <input
   type="file"
