@@ -15,45 +15,37 @@ function Home() {
 
   return (
     <div className="home">
-
       {/* HERO */}
-     <h1>AI Learning & Exam Practice Platform</h1>
+      <h1>AI Learning & Exam Practice Platform</h1>
 
-<p>
-AI-powered knowledge system with CUET PG practice and document intelligence.
-</p>
+      <p>
+        AI-powered knowledge system with CUET PG practice and document
+        intelligence.
+      </p>
 
-<p className="department">
-Govt. Degree College Hayathnagar — Department of Computer Science
-</p>
+      <p className="department">
+        Govt. Degree College Hayathnagar — Department of Computer Science
+      </p>
 
-<p className="credit">
-Student Innovation Project
-</p>
-        
+      <p className="credit">Student Innovation Project</p>
 
-        <div className="cta">
+      <div className="cta">
+        <Link to="/pyq" className="btn primary">
+          Start your Exam Practice
+        </Link>
 
-<Link to="/pyq" className="btn primary">
-Start CUET Practice
-</Link>
+        <Link to="/chat" className="btn secondary">
+          AI Chat
+        </Link>
 
-<Link to="/chat" className="btn secondary">
-AI Chat
-</Link>
+        <Link to="/upload" className="btn secondary">
+          Upload Knowledge
+        </Link>
 
-<Link to="/upload" className="btn secondary">
-Upload Knowledge
-</Link>
-
-<Link to="/library" className="btn secondary">
-Library
-</Link>
-
-</div>
-      
-
-     
+        <Link to="/library" className="btn secondary">
+          Library
+        </Link>
+      </div>
 
       {/* TECH STACK */}
       <section className="tech">
@@ -65,31 +57,24 @@ Library
           <TechBadge name="MongoDB" />
           <TechBadge name="Gemini" />
           <TechBadge name="CS DEPARTMENT" />
-
         </div>
       </section>
 
       {/* STATS */}
-    <section className="stats">
+      <section className="stats">
+        <div>
+          Documents: <span>{stats.totalNotes}</span>
+        </div>
 
-<div>
-Documents: <span>{stats.totalNotes}</span>
-</div>
+        <div>
+          Tests Taken: <span>{stats.totalAttempts}</span>
+        </div>
+      </section>
 
-<div>
-Tests Taken: <span>{stats.totalAttempts}</span>
-</div>
-
-</section>
-
-      <footer className="footer">
-        © 2026 AI Knowledge Assistant
-      </footer>
+      <footer className="footer">© 2026 AI Knowledge Assistant</footer>
     </div>
   );
 }
-
-
 
 function TechBadge({ name }) {
   return <div className="techBadge">{name}</div>;
