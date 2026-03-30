@@ -15,11 +15,11 @@ function Dashboard() {
   return(
     <div className="dashboardPage">
 
-      <h1>CUET PG Dashboard</h1>
+      <h1>EXAM Dashboard</h1>
 
       <div className="card" onClick={()=>navigate("/pyq")}>
         <h3>📄 Previous Year Papers</h3>
-        <p>Practice real CUET PG PYQs</p>
+        <p>Practice real  PYQs</p>
       </div>
 
     </div> 
