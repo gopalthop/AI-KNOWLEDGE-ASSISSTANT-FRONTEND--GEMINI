@@ -1,192 +1,240 @@
-/* ================= GLOBAL FIX ================= */
+/* ================= GLOBAL GLASS RESET ================= */
 
 html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  background-color: #0f172a;
+  background: linear-gradient(135deg, #f5f7fa, #e4ecf7);
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  color: #1e293b;
 }
 
-/* ================= PAGE ================= */
+/* ================= PAGE CONTAINER ================= */
 
 .home {
   min-height: 100vh;
-  background-color: #0f172a;
-  color: #ffffff;
   padding: clamp(20px, 4vw, 40px) clamp(15px, 3vw, 20px);
-  font-family: system-ui, sans-serif;
   max-width: 100%;
-  overflow-x: hidden;
 }
 
-/* ================= HERO ================= */
+/* ================= HERO (Main Title Section) ================= */
 
 .hero {
-  padding: 40px 20px 20px;
-  text-align: center;
-  max-width: 900px;
+  padding: 80px 20px 40px;
+  text-align: center; /* This centers the Title */
+  max-width: 1000px;
   margin: 0 auto;
 }
 
 .hero h1 {
-  font-size: clamp(1.8rem, 5vw, 3rem);
-  font-weight: 700;
-  margin-bottom: 16px;
+  /* This is for: AI Learning & Exam Practice Platform */
+  font-size: clamp(2.2rem, 7vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  color: #1e293b;
+  text-align: center;
 }
 
 .hero p {
-  color: #cbd5e1;
-  margin-bottom: clamp(20px, 4vw, 32px);
-  font-size: clamp(0.95rem, 2vw, 1.1rem);
-  max-width: 600px;
+  color: #64748b;
+  margin-bottom: clamp(30px, 5vw, 40px);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  max-width: 700px;
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
 }
 
-/* ================= CTA BUTTONS ================= */
-
-.cta{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-top:20px;
-}
-
-/* BUTTON BASE */
-
-.btn{
-  padding:8px 14px;
-  border-radius:6px;
-  text-decoration:none;
-  font-weight:500;
-  font-size:14px;
-  transition:all 0.2s ease;
-  display:inline-block;
-  width:auto;
-}
-
-/* PRIMARY BUTTON */
-
-.primary{
-  background:#2563eb;
-  color:white;
-}
-
-.primary:hover{
-  background:#1d4ed8;
-}
-
-/* SECONDARY BUTTON */
-
-.secondary{
-  border:1px solid #334155;
-  color:white;
-}
-
-.secondary:hover{
-  background:#1e293b;
-}
-/* ================= FEATURES GRID ================= */
-
-.features {
-  display: grid;
-  gap: clamp(16px, 3vw, 24px);
-  margin-bottom: clamp(40px, 6vw, 60px);
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  max-width: 1100px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* ================= FEATURE CARD ================= */
-
-.featureCard {
-  background-color: #1e293b;
-  border-radius: 12px;
-  padding: clamp(18px, 3vw, 24px);
-  border: 1px solid #334155;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  max-width: 100%;
-}
-
-.featureCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-}
-
-.featureCard h3 {
-  margin-bottom: 10px;
-  font-weight: 600;
-  font-size: clamp(1rem, 2vw, 1.2rem);
-}
-
-.featureCard p {
-  font-size: clamp(0.85rem, 1.8vw, 0.95rem);
-  color: #cbd5e1;
-}
-
-/* ================= TECH STACK ================= */
+/* ================= TECH STACK (Built With Section) ================= */
 
 .tech {
-  text-align: center;
-  margin-bottom: clamp(30px, 5vw, 40px);
+  margin: 60px 0;
+  text-align: center; /* This centers the "Built With" title and badges */
 }
 
 .tech h2 {
-  margin-bottom: 20px;
-  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  /* This is for: Built With */
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #1e293b;
+  text-align: center;
 }
 
 .techRow {
   display: flex;
-  gap: clamp(10px, 2vw, 16px);
-  justify-content: center;
+  gap: 12px;
+  justify-content: center; /* Centers the badges horizontally */
   flex-wrap: wrap;
-  max-width: 900px;
-  margin: auto;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .techBadge {
-  padding: clamp(8px, 1.5vw, 10px) clamp(14px, 3vw, 20px);
-  border-radius: 20px;
-  background-color: #1e293b;
-  border: 1px solid #334155;
-  font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+  padding: 10px 22px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  font-weight: 600;
+  color: #475569;
+  transition: all 0.3s ease;
 }
 
-/* ================= STATS ================= */
+.techBadge:hover {
+  background: #ffffff;
+  color: #6c63ff;
+  border-color: #6c63ff;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(108, 99, 255, 0.1);
+}
+
+/* ================= CTA BUTTONS ================= */
+
+.cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 14px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.primary {
+  background: #6c63ff;
+  color: white;
+  box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+}
+
+.primary:hover {
+  transform: translateY(-2px);
+  background: #5a52e6;
+  box-shadow: 0 8px 25px rgba(108, 99, 255, 0.4);
+}
+
+.secondary {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #6c63ff;
+}
+
+/* ================= FEATURES GRID ================= */
+
+.features {
+  display: grid;
+  gap: 25px;
+  margin: 80px auto;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  max-width: 1200px;
+}
+
+.featureCard {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+  padding: 30px;
+  transition: all 0.3s ease;
+}
+
+.featureCard:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.35);
+  border-color: #6c63ff;
+}
+
+/* ================= STATS & FOOTER ================= */
 
 .stats {
   text-align: center;
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  margin-bottom: clamp(30px, 5vw, 40px);
+  font-size: 1.3rem;
+  margin: 60px 0;
+  color: #475569;
 }
 
 .stats span {
-  font-weight: 600;
-  color: #2563eb;
+  font-weight: 800;
+  color: #6c63ff;
 }
-
-/* ================= FOOTER ================= */
 
 .footer {
   text-align: center;
-  opacity: 0.6;
-  border-top: 1px solid #334155;
-  padding-top: clamp(15px, 3vw, 20px);
-  font-size: clamp(0.8rem, 1.5vw, 0.9rem);
-}
-
-/* ================= TEXT STYLING ================= */
-
-.department {
-  font-weight: 500;
-  margin-top: 10px;
-}
-
-.credit {
   opacity: 0.7;
-  font-size: clamp(0.75rem, 1.3vw, 0.9rem);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 40px 0;
+  color: #64748b;
+}
+/* ================= ENHANCED ACTION BUTTONS (CTA) ================= */
+
+.cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* Increased gap for better breathing room */
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.btn {
+  padding: 16px 32px; /* Slightly larger for more presence */
+  border-radius: 16px; /* Matching the rounded glass look */
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 18px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy transition */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+}
+
+/* PRIMARY BUTTON (AI Chat, Upload) */
+.primary {
+  background: #6c63ff;
+  color: white;
+  box-shadow: 0 10px 20px rgba(108, 99, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.primary:hover {
+  transform: translateY(-6px) scale(1.05); /* Lifts higher and grows bigger */
+  background: #5a52e6;
+  box-shadow: 0 15px 30px rgba(108, 99, 255, 0.4); /* Stronger purple glow */
+}
+
+/* SECONDARY BUTTON (Library) */
+.secondary {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #6c63ff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.secondary:hover {
+  background: rgba(255, 255, 255, 0.6);
+  color: #5a52e6;
+  transform: translateY(-6px) scale(1.05); /* Same lift and pop as primary */
+  border-color: #6c63ff;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Active State (When Clicked) */
+.btn:active {
+  transform: translateY(-2px) scale(0.98); /* Sinks down slightly when pressed */
 }

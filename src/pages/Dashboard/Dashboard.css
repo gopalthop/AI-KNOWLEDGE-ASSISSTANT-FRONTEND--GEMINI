@@ -1,50 +1,86 @@
-.dashboardPage{
-  min-height:100vh;
-  background:radial-gradient(circle,#0a1b3d,#000);
-  color:white;
-  padding:40px;
+/* ================= DASHBOARD GLASS THEME ================= */
+
+.dashboardPage {
+  min-height: 100vh;
+  /* Switched from dark radial to your preferred light gradient */
+  background: linear-gradient(135deg, #f5f7fa, #e4ecf7);
+  color: #1e293b;
+  padding: 40px;
+  font-family: 'Poppins', sans-serif;
 }
 
-.dashboardCards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
-  margin:30px 0;
+.sectionTitle {
+  margin: 30px 0 15px;
+  font-weight: 700;
+  color: #1e293b;
+  font-size: 1.5rem;
 }
 
-.card{
-  background:rgba(255,255,255,0.07);
-  padding:25px;
-  border-radius:12px;
-  transition:.3s;
+/* ================= GRID LAYOUTS ================= */
+
+.dashboardCards, .papers {
+  display: grid;
+  gap: 20px;
+  margin: 30px 0;
 }
 
-.card:hover{
-  transform:translateY(-5px);
+.dashboardCards {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
-.sectionTitle{
-  margin:30px 0 15px;
+.papers {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
-.papers{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
+/* ================= THE GLASS CARDS ================= */
+
+.card, .paperCard {
+  /* THE GLASS FORMULA */
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  
+  padding: 25px;
+  border-radius: 20px; /* Increased to your preferred radius */
+  transition: all 0.3s ease;
 }
 
-.paperCard{
-  background:rgba(255,255,255,0.06);
-  padding:20px;
-  border-radius:12px;
+.card:hover, .paperCard:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.4);
+  border-color: #6c63ff;
 }
 
-.paperCard button{
-  margin-top:10px;
-  width:100%;
-  padding:10px;
-  border:none;
-  background:#0096ff;
-  color:white;
-  cursor:pointer;
+/* ================= BUTTONS ================= */
+
+.paperCard button {
+  margin-top: 15px;
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  
+  /* Your preferred purple accent */
+  background: #6c63ff;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(108, 99, 255, 0.2);
+}
+
+.paperCard button:hover {
+  background: #5a52e6;
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(108, 99, 255, 0.3);
+}
+
+/* Optional: Add a subtle stat highlight */
+.card h2 {
+  color: #6c63ff;
+  font-size: 2rem;
+  margin: 10px 0;
 }

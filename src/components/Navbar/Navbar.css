@@ -1,32 +1,73 @@
+/* ================= NAVBAR GLASS THEME ================= */
+
 .navbar {
-  background: #0c0c0c;
-  color: white;
-  padding: 14px 20px;
+  /* THE GLASS FORMULA */
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px); /* Safari support */
+  
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  color: #1e293b;
+  padding: 16px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  
   position: sticky;
   top: 0;
   z-index: 1000;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
 }
 
+/* ================= LOGO ================= */
+
 .logo {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #00d4ff;
+  font-size: 1.4rem;
+  font-weight: 800;
+  /* Your preferred purple accent */
+  color: #6c63ff;
   white-space: nowrap;
+  letter-spacing: -0.5px;
 }
+
+/* ================= NAV LINKS ================= */
 
 .navLinks {
   display: flex;
-  gap: 20px;
+  gap: 30px;
 }
 
 .navLinks a {
-  color: white;
+  color: #1e293b;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  position: relative;
 }
+
+/* Hover effect: subtle purple underline or color change */
+.navLinks a:hover {
+  color: #6c63ff;
+}
+
+.navLinks a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #6c63ff;
+  transition: width 0.3s ease;
+}
+
+.navLinks a:hover::after {
+  width: 100%;
+}
+
+/* ================= HAMBURGER ================= */
 
 .hamburger {
   display: none;
@@ -36,29 +77,76 @@
 }
 
 .hamburger span {
-  width: 22px;
+  width: 24px;
   height: 2px;
-  background: white;
+  background: #1e293b; /* Darker lines for visibility on light bg */
+  border-radius: 2px;
+  transition: 0.3s;
 }
 
-/* MOBILE */
+/* ================= MOBILE NAV ================= */
+
 @media (max-width: 768px) {
   .navLinks {
     position: absolute;
-    top: 60px;
-    right: 0;
-    background: #111;
+    top: 70px;
+    right: 20px;
+    
+    /* Mobile Glass Card Effect */
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    
     flex-direction: column;
-    width: 220px;
-    padding: 20px;
+    width: 200px;
+    padding: 25px;
+    border-radius: 20px;
     display: none;
+    gap: 20px;
   }
 
   .navLinks.active {
     display: flex;
+    /* Subtle entrance animation */
+    animation: fadeIn 0.3s ease forwards;
   }
 
   .hamburger {
     display: flex;
   }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================= USER SECTION ================= */
+
+.userSection {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 15px;
+}
+
+.userName {
+  font-weight: 600;
+  color: #475569;
+}
+
+.logoutBtn {
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: none;
+  background: #ef4444;
+  color: white;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.3s;
+}
+
+.logoutBtn:hover {
+  background: #dc2626;
 }

@@ -1,10 +1,12 @@
-/* ================= PAGE ================= */
+/* ================= EXAM PAGE GLASS THEME ================= */
 
 .examPage {
   min-height: 100vh;
-  background: #0a1b3d;
-  color: white;
+  /* Standard brand gradient */
+  background: linear-gradient(135deg, #f5f7fa, #e4ecf7);
+  color: #1e293b;
   padding: clamp(15px, 3vw, 25px);
+  font-family: 'Poppins', sans-serif;
 }
 
 /* ================= HEADER ================= */
@@ -13,19 +15,27 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: clamp(10px, 2vw, 20px);
-  background: #08142b;
-  border-radius: 8px;
-  margin-bottom: clamp(15px, 3vw, 25px);
+  padding: 15px 25px;
+  
+  /* Glass bar */
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 15px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 .examHeader h2 {
-  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-weight: 700;
+  color: #1e293b;
 }
 
 .timer {
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
-  font-weight: bold;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #6c63ff; /* Brand purple for the clock */
 }
 
 /* ================= BODY LAYOUT ================= */
@@ -33,25 +43,33 @@
 .examBody {
   display: grid;
   grid-template-columns: 3fr 1fr;
-  gap: clamp(15px, 3vw, 25px);
+  gap: 25px;
 }
 
-/* ================= QUESTION PANEL ================= */
+/* ================= QUESTION PANEL (The main card) ================= */
 
 .questionPanel {
-  padding: clamp(15px, 3vw, 30px);
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
+  padding: clamp(20px, 4vw, 40px);
+  
+  /* The Glass Formula */
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
 }
 
 .questionPanel h3 {
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  margin-bottom: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 12px;
 }
 
 .questionPanel p {
-  font-size: clamp(0.9rem, 1.8vw, 1rem);
-  line-height: 1.6;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #1e293b;
 }
 
 /* ================= OPTIONS ================= */
@@ -59,147 +77,165 @@
 .options {
   display: flex;
   flex-direction: column;
-  gap: clamp(8px, 2vw, 12px);
-  margin-top: 15px;
+  gap: 12px;
+  margin-top: 25px;
 }
 
 .option {
-  padding: clamp(10px, 2vw, 14px);
-  background: #1b2a52;
-  border: none;
-  color: white;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  color: #475569;
   cursor: pointer;
-  border-radius: 6px;
-  font-size: clamp(0.85rem, 1.6vw, 0.95rem);
-  transition: 0.2s;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  text-align: left;
 }
 
 .option:hover {
-  background: #22346b;
+  background: #ffffff;
+  transform: translateX(5px);
+  border-color: #6c63ff;
+  color: #6c63ff;
 }
 
 .selected {
-  background: #0096ff;
+  background: #6c63ff !important;
+  color: white !important;
+  border-color: #6c63ff;
+  box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
 }
 
 /* ================= ACTION BUTTONS ================= */
 
 .actions {
-  margin-top: clamp(15px, 3vw, 20px);
+  margin-top: 30px;
   display: flex;
-  gap: clamp(8px, 2vw, 12px);
+  gap: 12px;
   flex-wrap: wrap;
 }
 
 .actions button {
   flex: 1;
-  padding: clamp(8px, 1.5vw, 12px);
+  padding: 12px;
   border: none;
-  border-radius: 6px;
-  font-size: clamp(0.85rem, 1.6vw, 0.95rem);
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
   cursor: pointer;
+  transition: 0.3s;
+  background: rgba(255, 255, 255, 0.6);
+  color: #475569;
+}
+
+.actions button:hover:not(:disabled) {
+  background: #ffffff;
+  color: #6c63ff;
+  transform: translateY(-2px);
 }
 
 /* ================= PALETTE ================= */
 
 .palette {
-  background: #08142b;
-  padding: clamp(15px, 3vw, 20px);
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 20px;
+  border-radius: 20px;
+  height: fit-content;
 }
 
 .palette h4 {
-  font-size: clamp(0.9rem, 2vw, 1rem);
+  font-size: 0.95rem;
   margin-bottom: 15px;
+  color: #1e293b;
 }
 
-/* Grid auto adjusts */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(35px, 1fr));
-  gap: 8px;
+  grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+  gap: 10px;
 }
 
 .qbox {
-  padding: 8px;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   cursor: pointer;
-  font-size: 0.8rem;
-  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  border-radius: 10px;
+  transition: 0.2s;
 }
 
-.notVisited { background: gray; }
-.answered { background: green; }
-.review { background: orange; }
+/* Softer Status Colors */
+.notVisited { background: rgba(203, 213, 225, 0.6); color: #64748b; }
+.answered { background: #22c55e; color: white; }
+.review { background: #f59e0b; color: white; }
 
 /* ================= SUBMIT BUTTON ================= */
 
 .submitBtn {
-  margin-top: 20px;
+  margin-top: 25px;
   width: 100%;
-  padding: clamp(10px, 2vw, 14px);
-  background: red;
+  padding: 14px;
+  background: #ef4444;
   color: white;
   border: none;
-  border-radius: 6px;
-  font-size: clamp(0.9rem, 1.8vw, 1rem);
+  border-radius: 12px;
+  font-weight: 700;
   cursor: pointer;
+  transition: 0.3s;
 }
 
-/* ================= ANALYSIS ================= */
-
-.analysisBox {
-  margin-top: 20px;
-  background: rgba(255, 255, 255, 0.08);
-  padding: clamp(15px, 3vw, 20px);
-  border-radius: 10px;
-  line-height: 1.6;
-  font-size: clamp(0.85rem, 1.6vw, 0.95rem);
+.submitBtn:hover {
+  background: #dc2626;
+  transform: scale(1.02);
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
 }
 
-/* ================= MOBILE LAYOUT ================= */
+/* ================= RESULT & REVIEW ================= */
+
+.resultBox {
+  max-width: 950px;
+  margin: auto;
+  padding: 30px;
+}
+
+.reviewCard {
+  padding: 25px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  margin-bottom: 20px;
+  transition: transform 0.3s;
+}
+
+.reviewCard.correct { border-left: 8px solid #22c55e; }
+.reviewCard.wrong { border-left: 8px solid #ef4444; }
+
+.explanation {
+  margin-top: 15px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #475569;
+  border-left: 3px solid #6c63ff;
+}
+
+/* ================= MOBILE ================= */
 
 @media (max-width: 900px) {
   .examBody {
     grid-template-columns: 1fr;
   }
-
   .palette {
-    order: -1;
+    order: -1; /* Show palette above question on mobile */
   }
-}
-.resultBox {
-  max-width: 900px;
-  margin: auto;
-  padding: 30px;
-}
-
-.resultReview {
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.reviewCard {
-  padding: 20px;
-  border-radius: 10px;
-  background: rgba(255,255,255,0.06);
-}
-
-.reviewCard.correct {
-  border-left: 6px solid #22c55e;
-}
-
-.reviewCard.wrong {
-  border-left: 6px solid #ef4444;
-}
-
-.reviewCard h4 {
-  margin-bottom: 8px;
-}
-
-.explanation {
-  margin-top: 10px;
-  opacity: 0.9;
 }

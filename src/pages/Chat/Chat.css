@@ -1,10 +1,12 @@
-/* ================= PAGE ================= */
+/* ================= CHAT PAGE GLASS THEME ================= */
 
 .chatPage {
   min-height: 100vh;
-  background-color: #0f172a;
-  color: #ffffff;
+  /* Your preferred light-blue gradient */
+  background: linear-gradient(135deg, #f5f7fa, #e4ecf7);
+  color: #1e293b;
   padding: clamp(20px, 4vw, 40px) clamp(15px, 3vw, 16px);
+  font-family: 'Poppins', sans-serif;
 }
 
 /* ================= CENTER ================= */
@@ -19,136 +21,150 @@
 /* ================= TITLES ================= */
 
 .pageTitle {
-  font-size: clamp(1.6rem, 4vw, 2.2rem);
-  font-weight: 600;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 700;
   margin-bottom: 10px;
-  color: #ffffff;
+  color: #1e293b;
 }
 
 .pageSubtitle {
-  color: #cbd5e1;
+  color: #64748b;
   margin-bottom: clamp(20px, 4vw, 30px);
-  font-size: clamp(0.9rem, 2vw, 1rem);
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
 }
 
-/* ================= CHAT BOX ================= */
+/* ================= GLASS CHAT BOX ================= */
 
 .chatBox {
-  min-height: clamp(260px, 45vh, 350px);
-  max-height: 60vh;
+  min-height: clamp(300px, 50vh, 450px);
+  max-height: 65vh;
   overflow-y: auto;
   margin-bottom: 20px;
-  padding: clamp(12px, 2vw, 16px);
-  border-radius: 12px;
-  background-color: #1e293b;
+  padding: clamp(15px, 3vw, 25px);
+  
+  /* THE GLASS FORMULA */
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
 }
 
 /* ================= MESSAGES ================= */
 
 .userMsg,
 .aiMsg {
-  max-width: 85%;
-  padding: clamp(10px, 2vw, 14px) clamp(12px, 2vw, 16px);
-  border-radius: 12px;
-  margin-bottom: 12px;
-  font-size: clamp(0.85rem, 1.6vw, 0.95rem);
-  line-height: 1.5;
+  max-width: 80%;
+  padding: 14px 18px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+  line-height: 1.6;
   word-wrap: break-word;
+  transition: transform 0.2s ease;
 }
 
 .userMsg {
-  background-color: #2563eb;
+  /* Your brand purple */
+  background: #6c63ff;
   color: #ffffff;
   margin-left: auto;
+  border-bottom-right-radius: 4px; /* Stylish speech bubble edge */
+  box-shadow: 0 4px 15px rgba(108, 99, 255, 0.2);
 }
 
 .aiMsg {
-  background-color: #334155;
-  color: #ffffff;
+  /* Light frosted glass for AI */
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(5px);
+  color: #1e293b;
   margin-right: auto;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-bottom-left-radius: 4px;
   white-space: pre-wrap;
-  font-family: system-ui, monospace;
 }
 
-/* ================= INPUT ================= */
+/* ================= INPUT AREA ================= */
 
 .chatInput {
   display: flex;
-  gap: clamp(8px, 2vw, 10px);
-  margin-top: 10px;
-  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 15px;
+  align-items: center;
 }
 
 .chatInput input {
   flex: 1;
-  min-width: 200px;
-  padding: clamp(10px, 2vw, 12px);
-  border-radius: 10px;
-  border: 1px solid #334155;
-  background-color: #1e293b;
-  color: #ffffff;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  color: #1e293b;
   outline: none;
-  font-size: clamp(0.85rem, 1.6vw, 0.95rem);
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.25s ease;
 }
 
 .chatInput input:focus {
-  border-color: #2563eb;
+  background: #ffffff;
+  transform: scale(1.01);
+  box-shadow: 0 0 0 2px #6c63ff;
 }
 
 .primaryBtn {
-  padding: clamp(10px, 2vw, 12px) clamp(18px, 3vw, 24px);
-  border-radius: 10px;
+  padding: 12px 28px;
+  border-radius: 12px;
   border: none;
   font-weight: 600;
-  font-size: clamp(0.85rem, 1.6vw, 0.95rem);
-  background-color: #2563eb;
+  background: #6c63ff;
   color: #ffffff;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
 }
 
 .primaryBtn:hover {
-  background-color: #1d4ed8;
+  transform: translateY(-2px);
+  background: #5a52e6;
+  box-shadow: 0 6px 20px rgba(108, 99, 255, 0.4);
 }
 
-/* ================= TABLE (MARKDOWN) ================= */
+/* ================= TABLES (MARKDOWN) ================= */
 
 .aiMsg table {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 8px;
-  border-radius: 8px;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 10px;
+  border-radius: 10px;
   overflow: hidden;
-  font-size: clamp(0.75rem, 1.5vw, 0.85rem);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .aiMsg th,
 .aiMsg td {
-  border: 1px solid #475569;
-  padding: 6px;
+  padding: 10px;
   text-align: left;
-  background-color: #1e293b;
-  font-weight: 600;
+  background: rgba(255, 255, 255, 0.4);
 }
 
 .aiMsg th {
-  background-color: #1e293b;
+  background: rgba(108, 99, 255, 0.1);
+  color: #6c63ff;
+  font-weight: 700;
 }
 
-/* ================= MOBILE ================= */
+/* ================= MOBILE OPTIMIZATION ================= */
 
 @media (max-width: 600px) {
-
   .chatInput {
     flex-direction: column;
   }
-
   .primaryBtn {
     width: 100%;
   }
-
-  .userMsg,
-  .aiMsg {
-    max-width: 100%;
+  .userMsg, .aiMsg {
+    max-width: 95%;
   }
 }
