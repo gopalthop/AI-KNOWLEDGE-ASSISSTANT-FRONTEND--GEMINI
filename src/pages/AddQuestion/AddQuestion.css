@@ -1,0 +1,112 @@
+/* ===== PAGE WRAPPER ===== */
+
+.addPage {
+  min-height: 100vh;
+  padding: 40px 20px;
+  max-width: 700px;
+  margin: auto;
+}
+
+/* ===== TITLE ===== */
+
+.addPage h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 25px;
+  color: #1e293b;
+}
+
+/* ===== FORM CONTAINER ===== */
+
+.addPage {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ===== INPUTS & TEXTAREA ===== */
+
+textarea,
+input,
+select {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(200, 200, 200, 0.4);
+  outline: none;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.6);
+  transition: all 0.25s ease;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* ===== FOCUS EFFECT ===== */
+
+textarea:focus,
+input:focus,
+select:focus {
+  border-color: #6c63ff;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.15);
+}
+
+/* ===== SELECT DROPDOWN ===== */
+
+select {
+  cursor: pointer;
+  color: #475569;
+}
+
+/* ===== BUTTON ===== */
+
+button {
+  margin-top: 15px;
+  padding: 14px;
+  border-radius: 14px;
+  border: none;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  background: #6c63ff;
+  color: white;
+  box-shadow: 0 8px 20px rgba(108, 99, 255, 0.25);
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: #5a52e6;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 25px rgba(108, 99, 255, 0.35);
+}
+
+button:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* ===== GLASS CARD EFFECT ===== */
+
+.addPage {
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(18px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  padding: 30px;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 600px) {
+  .addPage {
+    padding: 20px;
+  }
+
+  button {
+    width: 100%;
+  }
+}
