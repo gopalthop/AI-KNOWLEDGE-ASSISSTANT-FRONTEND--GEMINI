@@ -1,241 +1,235 @@
-/* ================= EXAM PAGE GLASS THEME ================= */
-
+/* ================= GLOBAL & THEME ================= */
 .examPage {
   min-height: 100vh;
-  /* Standard brand gradient */
   background: linear-gradient(135deg, #f5f7fa, #e4ecf7);
   color: #1e293b;
   padding: clamp(15px, 3vw, 25px);
   font-family: 'Poppins', sans-serif;
+  animation: fadeIn 0.4s ease;
 }
 
 /* ================= HEADER ================= */
-
 .examHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 25px;
-  
-  /* Glass bar */
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 15px;
   margin-bottom: 25px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-}
-
-.examHeader h2 {
-  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-  font-weight: 700;
-  color: #1e293b;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .timer {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 800;
-  color: #6c63ff; /* Brand purple for the clock */
+  color: #6c63ff;
+  letter-spacing: 1px;
 }
 
-/* ================= BODY LAYOUT ================= */
-
+/* ================= LAYOUT ================= */
 .examBody {
   display: grid;
   grid-template-columns: 3fr 1fr;
   gap: 25px;
 }
 
-/* ================= QUESTION PANEL (The main card) ================= */
-
+/* ================= QUESTION PANEL ================= */
 .questionPanel {
   padding: clamp(20px, 4vw, 40px);
-  
-  /* The Glass Formula */
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
 }
 
-.questionPanel h3 {
-  font-size: 1.1rem;
+.qHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.reviewBadge {
+  background: #f59e0b;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
   font-weight: 600;
-  color: #64748b;
-  margin-bottom: 12px;
 }
 
-.questionPanel p {
-  font-size: 1.05rem;
+.questionText {
+  font-size: 1.15rem;
   line-height: 1.7;
-  color: #1e293b;
+  font-weight: 500;
+  border-left: 4px solid #6c63ff;
+  padding-left: 15px;
+  margin: 20px 0;
 }
 
-/* ================= OPTIONS ================= */
 
+/* ================= OPTIONS (FIXED) ================= */
 .options {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-top: 25px;
+  margin-top: 20px;
 }
 
-.option {
-  padding: 14px 18px;
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  color: #475569;
-  cursor: pointer;
+/* Specifically target .option class to avoid generic button styles */
+.options .option {
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.6) !important; /* Force light background */
+  color: #1e293b !important;                      /* Force dark text visibility */
+  border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 12px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  transition: all 0.2s ease;
   text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+  font-weight: 500;
+  transform: none; /* Reset any inherited transforms */
 }
 
-.option:hover {
-  background: #ffffff;
+.options .option:hover {
+  background: #ffffff !important;
+  color: #6c63ff !important;
   transform: translateX(5px);
   border-color: #6c63ff;
-  color: #6c63ff;
 }
 
-.selected {
-  background: #6c63ff !important;
+/* Only apply blue when the 'selected' class is explicitly present */
+.options .option.selected {
+  background: linear-gradient(135deg, #6c63ff, #5a52e0) !important;
   color: white !important;
-  border-color: #6c63ff;
   box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+  border-color: transparent;
 }
 
-/* ================= ACTION BUTTONS ================= */
-
+/* ================= ACTION BUTTONS (FIXED) ================= */
 .actions {
-  margin-top: 30px;
+  margin-top: 35px;
   display: flex;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
+/* Scope button styles to the .actions container only */
 .actions button {
-  flex: 1;
-  padding: 12px;
+  padding: 12px 20px;
   border: none;
-  border-radius: 12px;
+  border-radius: 10px;
   font-weight: 600;
-  font-size: 0.9rem;
   cursor: pointer;
   transition: 0.3s;
-  background: rgba(255, 255, 255, 0.6);
+  background: white;
   color: #475569;
 }
 
-.actions button:hover:not(:disabled) {
-  background: #ffffff;
+/* Specific class for the Save & Next button to avoid using :last-child */
+.actions .nextBtn {
+  background: #6c63ff !important; 
+  color: white !important;
+  margin-left: auto;
+}
+
+.actions .nextBtn:hover {
+  background: #5a52e0 !important;
+}
+
+/* ================= PALETTE GRID (FIXED) ================= */
+.grid .qbox {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+  /* Ensure palette colors don't bleed out */
+}
+
+/* Ensure the 'active' border only appears on palette boxes */
+.grid .qbox.active {
+  border: 2px solid #6c63ff !important;
+  transform: scale(1.1);
+  background: white;
   color: #6c63ff;
-  transform: translateY(-2px);
 }
 
 /* ================= PALETTE ================= */
-
 .palette {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
   padding: 20px;
   border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   height: fit-content;
-}
-
-.palette h4 {
-  font-size: 0.95rem;
-  margin-bottom: 15px;
-  color: #1e293b;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
-  gap: 10px;
+  gap: 8px;
+  margin: 15px 0;
 }
 
 .qbox {
   aspect-ratio: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-radius: 8px;
   border: none;
+  font-weight: 700;
   cursor: pointer;
-  font-weight: 600;
-  font-size: 0.85rem;
-  border-radius: 10px;
   transition: 0.2s;
 }
 
-/* Softer Status Colors */
-.notVisited { background: rgba(203, 213, 225, 0.6); color: #64748b; }
+.active { border: 2px solid #6c63ff; transform: scale(1.1); }
+.notVisited { background: #cbd5e1; color: #64748b; }
 .answered { background: #22c55e; color: white; }
 .review { background: #f59e0b; color: white; }
 
-/* ================= SUBMIT BUTTON ================= */
-
 .submitBtn {
-  margin-top: 25px;
   width: 100%;
-  padding: 14px;
+  margin-top: 20px;
+  padding: 12px;
   background: #ef4444;
   color: white;
   border: none;
-  border-radius: 12px;
+  border-radius: 10px;
   font-weight: 700;
   cursor: pointer;
-  transition: 0.3s;
 }
 
-.submitBtn:hover {
-  background: #dc2626;
-  transform: scale(1.02);
-  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
-}
-
-/* ================= RESULT & REVIEW ================= */
-
-.resultBox {
-  max-width: 950px;
-  margin: auto;
-  padding: 30px;
-}
-
+/* ================= RESULTS ================= */
 .reviewCard {
-  padding: 25px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  margin-bottom: 20px;
-  transition: transform 0.3s;
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  border-left: 6px solid #cbd5e1;
 }
-
-.reviewCard.correct { border-left: 8px solid #22c55e; }
-.reviewCard.wrong { border-left: 8px solid #ef4444; }
+.reviewCard.correct { border-left-color: #22c55e; }
+.reviewCard.wrong { border-left-color: #ef4444; }
 
 .explanation {
-  margin-top: 15px;
-  padding: 12px;
-  background: rgba(255, 255, 255, 0.4);
+  margin-top: 10px;
+  padding: 10px;
+  background: #f8fafc;
   border-radius: 8px;
   font-size: 0.9rem;
   color: #475569;
-  border-left: 3px solid #6c63ff;
 }
 
-/* ================= MOBILE ================= */
-
+/* ================= RESPONSIVE ================= */
 @media (max-width: 900px) {
-  .examBody {
-    grid-template-columns: 1fr;
-  }
-  .palette {
-    order: -1; /* Show palette above question on mobile */
-  }
+  .examBody { grid-template-columns: 1fr; }
+  .palette { order: -1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
