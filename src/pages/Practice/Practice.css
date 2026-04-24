@@ -170,21 +170,7 @@
   height: fit-content;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
-  gap: 8px;
-  margin: 15px 0;
-}
 
-.qbox {
-  aspect-ratio: 1;
-  border-radius: 8px;
-  border: none;
-  font-weight: 700;
-  cursor: pointer;
-  transition: 0.2s;
-}
 
 .active { border: 2px solid #6c63ff; transform: scale(1.1); }
 .notVisited { background: #cbd5e1; color: #64748b; }
