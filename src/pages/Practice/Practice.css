@@ -141,23 +141,83 @@
   background: #5a52e0 !important;
 }
 
-/* ================= PALETTE GRID (FIXED) ================= */
-.grid .qbox {
-  aspect-ratio: 1;
+/* ================= PALETTE CONTAINER ================= */
+.palette {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers the grid and title */
+}
+
+/* ================= GRID (THE FIX) ================= */
+.grid {
+  display: grid;
+  /* Use a fixed number of columns for mobile (6 is usually perfect) */
+  grid-template-columns: repeat(6, 40px); 
+  gap: 10px;
+  margin: 15px 0;
+  justify-content: center; /* Keeps the grid block centered */
+}
+
+.qbox {
+  width: 40px;      /* Fixed width */
+  height: 40px;     /* Fixed height */
   border-radius: 8px;
   border: none;
   font-weight: 700;
+  font-size: 0.85rem;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: 0.2s;
-  /* Ensure palette colors don't bleed out */
+  background: #cbd5e1; /* Default background */
+  color: #64748b;
 }
 
-/* Ensure the 'active' border only appears on palette boxes */
-.grid .qbox.active {
-  border: 2px solid #6c63ff !important;
-  transform: scale(1.1);
-  background: white;
-  color: #6c63ff;
+/* ================= RESPONSIVE ADJUSTMENTS ================= */
+@media (max-width: 900px) {
+  .examBody {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .palette {
+    order: -1; /* Keeps palette at top on mobile */
+    padding: 15px;
+    margin-bottom: 10px;
+  }
+
+  .grid {
+    /* Adjust columns based on screen width - 5 to 6 is standard */
+    grid-template-columns: repeat(auto-fit, 42px);
+    max-width: 300px; /* Limits how wide the palette "block" can get */
+    justify-content: center;
+  }
+
+  .qbox {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+/* ================= SUBMIT BUTTON FIX ================= */
+.submitBtn {
+  width: 100%;
+  max-width: 250px; /* Prevents button from being too wide on mobile */
+  margin-top: 15px;
+  padding: 12px;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 /* ================= PALETTE ================= */
