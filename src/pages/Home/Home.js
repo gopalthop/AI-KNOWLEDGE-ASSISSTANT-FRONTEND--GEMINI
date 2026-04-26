@@ -16,7 +16,7 @@ function Home() {
   return (
     <div className="home">
       {/* HERO */}
-      <h1>AI Learning & Exam Practice Platform</h1>
+      <h1>CUET PG Practice Platform</h1>
 
       <p>
         AI-powered knowledge system with CUET PG practice and document
