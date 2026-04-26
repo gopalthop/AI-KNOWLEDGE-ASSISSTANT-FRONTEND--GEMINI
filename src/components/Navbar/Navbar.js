@@ -7,7 +7,7 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      <div className="logo">CUET PG Practice Platform</div>
+      <div className="logo">AI Knowledge Assistant</div>
 
       <div className={`navLinks ${menuOpen ? "active" : ""}`}>
         <Link to="/" onClick={() => setMenuOpen(false)}>
