@@ -6,7 +6,7 @@
   background: linear-gradient(135deg, #f5f7fa, #e4ecf7);
   color: #1e293b;
   padding: clamp(20px, 4vw, 40px) clamp(15px, 3vw, 16px);
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 /* ================= CENTER ================= */
@@ -41,7 +41,7 @@
   overflow-y: auto;
   margin-bottom: 20px;
   padding: clamp(15px, 3vw, 25px);
-  
+
   /* THE GLASS FORMULA */
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(20px);
@@ -102,7 +102,7 @@
   backdrop-filter: blur(10px);
   color: #1e293b;
   outline: none;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   transition: all 0.25s ease;
 }
 
@@ -164,7 +164,156 @@
   .primaryBtn {
     width: 100%;
   }
-  .userMsg, .aiMsg {
+  .userMsg,
+  .aiMsg {
     max-width: 95%;
+  }
+}
+/* ... keep your existing .chatPage and .chatBox styles ... */
+
+/* ================= UPDATED CHAT BOX ================= */
+.chatBox {
+  min-height: clamp(300px, 50vh, 450px);
+  max-height: 65vh;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  padding: clamp(15px, 3vw, 25px);
+  display: flex;
+  flex-direction: column; /* Ensures messages stack correctly */
+
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border-radius: 24px;
+}
+
+/* ================= MARKDOWN STYLING ================= */
+.aiMsg pre {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 12px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 10px 0;
+}
+
+.aiMsg code {
+  font-family: "Fira Code", monospace;
+  font-size: 0.85rem;
+  background: rgba(108, 99, 255, 0.1);
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+/* ================= TYPING INDICATOR ================= */
+.typing {
+  font-style: italic;
+  opacity: 0.7;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.typing::after {
+  content: "...";
+  display: inline-block;
+  width: 12px;
+  animation: dot-jump 1.5s infinite;
+}
+
+@keyframes dot-jump {
+  0%,
+  20% {
+    content: ".";
+  }
+  40%,
+  60% {
+    content: "..";
+  }
+  80%,
+  100% {
+    content: "...";
+  }
+}
+
+/* ================= EMPTY STATE ================= */
+.emptyChat {
+  margin: auto;
+  opacity: 0.4;
+  text-align: center;
+}
+
+/* ================= INPUT AREA (STACKED) ================= */
+
+.chatInput {
+  display: flex;
+  flex-direction: column; /* This puts the button below the box */
+  gap: 15px; /* Space between the input and the button */
+  margin-top: 20px;
+  width: 100%;
+}
+
+.chatInput input {
+  width: 100%; /* Ensures it spans the full container */
+  padding: 16px 20px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  color: #1e293b;
+  outline: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  transition: all 0.25s ease;
+  box-sizing: border-box; /* Prevents padding from breaking width */
+}
+
+.chatInput input:focus {
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(108, 99, 255, 0.15);
+  border-color: #6c63ff;
+}
+
+.primaryBtn {
+  width: 100%; /* Full width to match the input box */
+  padding: 14px;
+  min-height: 55px;
+  border-radius: 14px;
+  border: none;
+  font-weight: 600;
+  font-size: 1.05rem;
+  background: #6c63ff;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(108, 99, 255, 0.3);
+}
+
+.primaryBtn:hover {
+  transform: translateY(-2px);
+  background: #5a52e6;
+  box-shadow: 0 10px 25px rgba(108, 99, 255, 0.4);
+}
+
+.primaryBtn:active {
+  transform: translateY(0);
+}
+
+/* ================= MOBILE OPTIMIZATION ================= */
+
+@media (max-width: 650px) {
+  .chatBox {
+    max-height: 55vh; /* Gives a bit more room for the stacked input */
+  }
+
+  .userMsg,
+  .aiMsg {
+    max-width: 95%;
+  }
+
+  .pageTitle {
+    font-size: 1.6rem;
   }
 }
